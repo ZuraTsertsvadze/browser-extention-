@@ -1,0 +1,65 @@
+/* #susa{
+    background-color: orange;
+height: 30px;
+width: 400px;
+}
+
+
+#para{
+    background-color: cyan;
+height: 30px;
+width: 400px;
+margin-top: 30px;
+
+} */
+body {
+    margin: 0px;
+    font: 1em sans-serif;
+    padding:10px;
+    min-width: 400px;
+}
+#text{
+margin:5px 5px 0px 5px;
+padding:10px;
+border-color: green;
+border-width: 2px;
+width:400px
+}
+
+#button{
+    color: white;
+    background-color:green;
+    height: 40px;
+    margin:0px 5px 0px 5px;
+
+}
+
+#buttons{
+    color: white;
+    background-color:green;
+    height:40px;
+
+}
+
+#flex-box{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.soso{
+    color:green;
+    padding-left:0px;
+}
+
+.inp-list{
+    list-style: none;
+    padding-top: 20px;
+}
+   
+
+
+
+#ul-el{
+    padding-left:0px;
+}
