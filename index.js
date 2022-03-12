@@ -325,7 +325,7 @@ function save_btn(){
 // function buy() {
 //   mam.innerHTML+="<p>  thank you</p>"
 // }
-
+const saveBtn = document.getElementById("button-save");
 const input = document.getElementById("text");
 const save = document.getElementById("button");
 const ulElement = document.getElementById("ul-el");
@@ -333,26 +333,41 @@ const clear = document.getElementById("buttons");
 let myLeads = [];
 let inputEl = input;
 let dad
-clear.addEventListener("click", function () {
-  dad = " ";
+
+clear.addEventListener("dblclick", function () {
+  localStorage.clear();
+  myLeads = [];
+  renderLeads();
+
 })
 
-let dataFromLocal;
-dataFromLocal=JSON.parse(localStorage.getItem("myLeads"))
-console.log( dataFromLocal)
-localStorage.clear()
+// let dataFromLocal;
+const dataFromLocal = JSON.parse(localStorage.getItem("myLeads"))
+
+
+
+if (dataFromLocal) {
+  myLeads = dataFromLocal;
+  renderLeads()
+}
+
+
+
+
 save.addEventListener("click", function () {
   myLeads.push(input.value);
-  localStorage.setItem("myLeads",JSON.stringify(myLeads))
-  
-  
-  
+  localStorage.setItem("myLeads", JSON.stringify(myLeads))
+
+
+
 
   renderLeads();
- 
 
-  
+  inputEl.value = "";
+
+
 })
+
 
 function renderLeads() {
 
@@ -363,14 +378,50 @@ function renderLeads() {
      <a href= '${myLeads[i]}' target='_blank' class='soso'>${myLeads[i]}</a>
      </li>`;
     ulElement.innerHTML = listItems;
-    // ulElement.innerHTML+="<li>"+myLeads[i]+"</li>";
-    // const list=document.createElement("li")
-    // list.textContent = myLeads[i]
-    // ulElement.append(list)
 
   }
 
 }
+
+
+
+saveBtn.addEventListener("click", function () {
+
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, function (tabs) {
+    myLeads.push(tabs[0].url);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    renderLeads();
+  });
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ulElement.innerHTML+="<li>"+myLeads[i]+"</li>";
+// const list=document.createElement("li")
+// list.textContent = myLeads[i]
+// ulElement.append(list)
+
+
+
+
+
+
 
 
 // const zura="soso";
@@ -387,3 +438,10 @@ function renderLeads() {
 
 
 // console.log(typeof zura)
+
+
+
+// function zura(sosa) {
+// sosa=[];
+// return sosa[0];
+// }
